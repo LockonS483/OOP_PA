@@ -13,5 +13,6 @@ Build:
 ** Pushing to git
 Add files:
     git add filename.txt
-Commit:
+Commit and push:
     git commit -a -m "message"
+    git push
