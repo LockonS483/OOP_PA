@@ -1,9 +1,17 @@
 ** Updating build on PythonAnywhere
-Status:
+Status and fetch:
 	git status
+	git fetch
 Update:
 	git remote -v update
 Pull:
 	git pull
 Build:
 	g++ -o name s.cpp
+
+
+** Pushing to git
+Add files:
+    git add filename.txt
+Commit:
+    git commit -a -m "message"
