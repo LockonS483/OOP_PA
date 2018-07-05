@@ -16,3 +16,10 @@ Add files:
 Commit and push:
     git commit -a -m "message"
     git push
+
+
+**dir and files
+List Files:
+	ls
+pring working directory:
+	pwd
