@@ -1,0 +1,9 @@
+** Updating build on PythonAnywhere
+Status:
+	git status
+Update:
+	git remote -v update
+Pull:
+	git pull
+Build:
+	g++ -o name s.cpp
