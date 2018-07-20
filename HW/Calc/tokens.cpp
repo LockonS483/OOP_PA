@@ -44,7 +44,7 @@ Token Token_Stream::get(){
 				cin.putback(temp);
 				return Token{name, s};
 			}else{
-				return Token{invalid, double(ch)};
+				return Token{invalid, double(temp)};
 			}
 	}
 

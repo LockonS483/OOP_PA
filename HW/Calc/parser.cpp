@@ -73,8 +73,8 @@ double Term(Token_Stream& ts){
 	}
 }
 
-double Primary(){
-	token t = ts.get();
+double Primary(Token_Stream& ts){
+	Token t = ts.get();
 	switch (t.kind){
 	case '(':
 		{
