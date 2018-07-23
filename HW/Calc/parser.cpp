@@ -2,6 +2,7 @@
 #include "tokens.h"
 #include "parser.h"
 #include "vars.h"
+#include "funcs.h"
 
 double Statement(Token_Stream& ts){
 	/*
@@ -64,10 +65,10 @@ double Term(Token_Stream& ts){
 	/*
 
 	Accepted:
-	- Primary
-	- Term '*' Primary
-	- Term '/' Primary
-	- Term '%' Primary
+	- Expon
+	- Term '*' Expon
+	- Term '/' Expon
+	- Term '%' Expon
 	*/
 
 	double left = Expon(ts);
@@ -131,7 +132,19 @@ double Primary(Token_Stream& ts){
 	case '+':
 		return Primary(ts);
 	case name:
-		return getValue(t.name);
+		{
+			Token checker = ts.get();
+			if(checker.kind == '('){
+				double d = Expression(ts);
+				d = ExecFunc(t.name, d);
+				t = ts.get();
+				if (t.kind != ')') error("')' expected");
+				return d;
+			}else{
+				ts.putback(checker);
+				return getValue(t.name);
+			}
+		}
 	default:
 		error("expected primary");
 		return 0.0;

@@ -23,6 +23,9 @@ Token Token_Stream::get(){
 		case '*':
 		case '/':
 		case '=':
+		case '^':
+		case '(':
+		case ')':
 		case print:
 		case quit:
 			return Token{temp};
@@ -39,7 +42,7 @@ Token Token_Stream::get(){
 			if(isalpha(temp)){
 				string s;
 				s += temp;
-				while(cin.get(temp) && isalpha(temp)){
+				while(cin.get(temp) && (isalpha(temp) || isdigit(temp))){
 					s += temp;
 				}
 				cin.putback(temp);
