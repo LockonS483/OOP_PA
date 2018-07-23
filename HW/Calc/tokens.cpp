@@ -6,14 +6,14 @@ std::ostream &operator<<(std::ostream &os, Token const &t) {
 }
 
 void Token_Stream::putback(Token t){
-	buffer = t;
-	full = true;
+	buffer.push_back(t);
 }
 
 Token Token_Stream::get(){
-	if(full){
-		full = false;
-		return buffer;
+	if(buffer.size() > 0){
+		Token temp = buffer.back();
+		buffer.pop_back();
+		return temp;
 	}
 	char temp;
 	cin >> temp;
@@ -22,6 +22,7 @@ Token Token_Stream::get(){
 		case '-':
 		case '*':
 		case '/':
+		case '=':
 		case print:
 		case quit:
 			return Token{temp};
@@ -52,11 +53,13 @@ Token Token_Stream::get(){
 }
 
 void Token_Stream::ignore(char c){
-	if(full && c==buffer.kind){
-		full = false;
-		return;
+	while(buffer.size() > 0){
+		Token t = buffer.back();
+		buffer.pop_back();
+		if(t.kind == c){
+			return;
+		}
 	}
-	full = false;
 	
 	char ch = 0;
 	while(cin>>ch){
@@ -65,7 +68,6 @@ void Token_Stream::ignore(char c){
 		}
 	}
 }
-
 
 ////////////////////////////
 ///////OLD ASSIGNMENT///////

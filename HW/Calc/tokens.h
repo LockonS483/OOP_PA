@@ -1,7 +1,10 @@
+#include "std_lib_facilities.h"
+
 const char number = '8';
 const char invalid = 'i';
 const char name = 'a';
 const char quit = 'q';
+const char power = '^';
 const char print = ';';
 
 class Token{
@@ -20,6 +23,8 @@ public:
 	void putback(Token t);
 	void ignore(char c);
 private:
-	bool full{false};
-	Token buffer{invalid};
+	//bool full{false};
+	vector<Token> buffer;
 };
+
+Token LastBuffer();
