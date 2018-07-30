@@ -35,7 +35,7 @@ public:
 	bool operator == (const Date& other);
 	bool operator != (const Date& other);
 	friend ostream& operator << (ostream& out, const Date& d);
-	friend istream& operator >> (istream& in, const Date& d);
+	friend istream& operator >> (istream& in, Date& d);
 
 private:
 	int y,m,d; //Year, Month, Day

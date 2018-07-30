@@ -59,7 +59,7 @@ void Date::FullPrint(){
 	return;
 }
 
-//Other methods
+//Helper functions
 string Date::toString() const{
 	string temp = std::to_string(y) + "/";
 	temp += std::to_string(m) + "/";
@@ -78,6 +78,8 @@ bool Date::isValid() const{
 		if(leapYear()){
 			if(d > daysinLeap[m]){
 				return false;
+			}else{
+				return true;
 			}
 		}
 		return false;
@@ -96,16 +98,14 @@ void Date::ConvertValid(){
 			y += 1;
 			m -= 12;
 		}else{
-			if(d > daysin[m]){
-				if(leapYear()){
-					if(d > daysinLeap[m]){
-						d -= daysinLeap[m];
-						m++;
-					}
-				}else{
-					d -= daysin[m];
+			if(leapYear()){
+				if(d > daysinLeap[m]){
+					d -= daysinLeap[m];
 					m++;
 				}
+			}else if(d > daysin[m]){
+				d -= daysin[m];
+				m++;
 			}
 		}
 	}
@@ -120,6 +120,7 @@ bool Date::operator == (const Date& other){
 bool Date::operator != (const Date& other){
 	return !(*this == other);
 }
+
 std::ostream& operator << (std::ostream& out, const Date& d){
 	out << d.toString() << endl;
 	return out;
@@ -130,13 +131,15 @@ std::istream& operator >> (std::istream& in, Date& d){
 	char s1, s2;
 	in >> inY >> s1 >> inM >> s2 >> inD;
 	Date test{inY, inM, inD};
+	cout << test;
 
 	if(!test.isValid()){
-		cout << "Invalid input. Date was not changed.\nUse the format YYYY/MM/DD" << endl;
+		cout << "Invalid input. Date was not changed.\nUse the format YYYY/MM/DD." << endl;
+		return in;
+	}else{
+		d.setYear(test.y);
+		d.setMonth(test.m);
+		d.setDay(test.d);
 		return in;
 	}
-	d.setYear(inY);
-	d.setMonth(inM);
-	d.setDay(inD);
-	return in;
 }

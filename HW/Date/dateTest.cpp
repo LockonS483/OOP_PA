@@ -36,7 +36,7 @@ int main(){
 		case 'f':
 			cout << "The full date is: " << endl;
 			date.FullPrint();
-
+			break;
 
 		case 's':
 			cout << "Enter set date (YYYY/MM/DD): ";
