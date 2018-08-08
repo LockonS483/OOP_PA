@@ -4,6 +4,7 @@ const char number = '8';
 const char invalid = 'i';
 const char name = 'a';
 const char quit = 'q';
+const char help = 'h';
 const char power = '^';
 const char print = ';';
 

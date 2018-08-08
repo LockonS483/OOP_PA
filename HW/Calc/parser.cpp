@@ -117,6 +117,7 @@ double Expon(Token_Stream& ts){
 
 double Primary(Token_Stream& ts){
 	Token t = ts.get();
+
 	switch (t.kind){
 	case '(':
 		{
@@ -134,6 +135,7 @@ double Primary(Token_Stream& ts){
 	case name:
 		{
 			Token checker = ts.get();
+
 			if(checker.kind == '('){
 				double d = Expression(ts);
 				d = ExecFunc(t.name, d);
@@ -141,6 +143,7 @@ double Primary(Token_Stream& ts){
 				if (t.kind != ')') error("')' expected");
 				return d;
 			}else{
+				cout << "What the" << endl;
 				ts.putback(checker);
 				return getValue(t.name);
 			}

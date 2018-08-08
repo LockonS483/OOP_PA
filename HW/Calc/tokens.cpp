@@ -29,6 +29,7 @@ Token Token_Stream::get(){
 		case '%':
 		case print:
 		case quit:
+		case help:
 			return Token{temp};
 		case '.':
 		case '1': case '2': case '3': case '4': case '5':
