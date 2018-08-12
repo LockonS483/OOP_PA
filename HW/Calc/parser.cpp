@@ -123,7 +123,7 @@ double Primary(Token_Stream& ts){
 		{
 			double d = Statement(ts);
 			t = ts.get();
-			if(t.kind != '(') error("'(' expected");
+			if(t.kind != ')') error("')' expected");
 			return d;
 		}
 	case number:
