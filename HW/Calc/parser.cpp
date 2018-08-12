@@ -143,7 +143,6 @@ double Primary(Token_Stream& ts){
 				if (t.kind != ')') error("')' expected");
 				return d;
 			}else{
-				cout << "What the" << endl;
 				ts.putback(checker);
 				return getValue(t.name);
 			}
